@@ -55,8 +55,8 @@ interface initialType {
     busqueda: string,
     personajes: Personaje[],
     paginacion:{
-        next:string,
-        prev:string
+        siguiente:string,
+        anterior:string
     },
     favoritos: Personaje[],
     selected: Personaje,
@@ -68,8 +68,8 @@ const initialState: initialType = {
     busqueda: '',
     personajes:[],
     paginacion:{
-        next:'',
-        prev:''
+        siguiente:'',
+        anterior:''
     },
     favoritos:[],
     selected:{
@@ -114,8 +114,8 @@ export const personajesSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getPersonajes.fulfilled, (state, action) => {
             state.personajes = action.payload.results
-            state.paginacion.next = action.payload.info.next
-            state.paginacion.prev = action.payload.info.prev
+            state.paginacion.siguiente = action.payload.info.siguiente
+            state.paginacion.anterior = action.payload.info.anterior
             state.errorBusqueda = initialState.errorBusqueda
         })
         builder.addCase(getPersonajes.rejected, (state, action) => {
@@ -123,8 +123,8 @@ export const personajesSlice = createSlice({
         })
         builder.addCase(getPaginacion.fulfilled, (state, action) => {
             state.personajes = action.payload.results
-            state.paginacion.next = action.payload.info.next
-            state.paginacion.prev = action.payload.info.prev
+            state.paginacion.siguiente = action.payload.info.siguiente
+            state.paginacion.anterior = action.payload.info.anterior
         })
         builder.addCase(getOnePersonaje.fulfilled, (state, action) => {
             state.selected = action.payload

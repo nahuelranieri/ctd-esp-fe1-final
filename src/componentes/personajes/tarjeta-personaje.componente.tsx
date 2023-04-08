@@ -28,7 +28,7 @@ const TarjetaPersonaje = ({personaje}:Props) => {
         {/* <img src={personaje.image} alt={personaje.name} onClick={()=>detalle(personaje)}/>*/}
         <div className="tarjeta-personaje-body">
             <span>{personaje.name}</span>
-            <BotonFavorito esFavorito={isFav?true:false} onClick={personaje} />
+            <BotonFavorito isFavBtn={isFav?true:false} onClick={personaje} />
         </div>
     </div>
 }
