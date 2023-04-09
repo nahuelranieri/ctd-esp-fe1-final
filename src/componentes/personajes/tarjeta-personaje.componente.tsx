@@ -19,13 +19,13 @@ const TarjetaPersonaje = ({personaje}:Props) => {
     const favsStore = useAppSelector(state => state.personaje.favoritos)
     const navigate = useNavigate();
     const isFav = favsStore.find(item => item.id === personaje.id)
-    /*const detalle = (personaje:Personaje)=>{
+    const detalle = (personaje:Personaje)=>{
         navigate(`/detalle/${personaje.id}`)
     }
-    */
+    
     return <div className="tarjeta-personaje">
-        <img src={personaje.image} alt={personaje.name}/>
-        {/* <img src={personaje.image} alt={personaje.name} onClick={()=>detalle(personaje)}/>*/}
+        {/* <img src={personaje.image} alt={personaje.name}/> */}
+        <img src={personaje.image} alt={personaje.name} onClick={()=>detalle(personaje)}/>
         <div className="tarjeta-personaje-body">
             <span>{personaje.name}</span>
             <BotonFavorito isFavBtn={isFav?true:false} onClick={personaje} />

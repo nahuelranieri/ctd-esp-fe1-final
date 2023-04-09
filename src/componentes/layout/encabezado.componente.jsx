@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import './encabezado.css';
+import { useAppSelector } from "../../redux/hooks";
 
 /**
  * Encabezado que contiene los links para navegar entre las páginas
@@ -10,6 +11,7 @@ import './encabezado.css';
  */
 const Encabezado = () => {
 
+    const personaje = useAppSelector(state => state.personaje.selected)
     return <header>
             <div>
                 <div>
@@ -19,7 +21,7 @@ const Encabezado = () => {
                     <ul>
                         <li><Link to="/">Inicio</Link></li>
                         <li><Link to="/favoritos">Favoritos</Link></li>
-                        <li><Link to="/detalle">Detalle</Link></li>
+                        <li><Link to={`/detalle/${personaje.id}`}>Detalle</Link></li>
                     </ul>
                 </nav>
             </div>

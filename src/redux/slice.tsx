@@ -76,14 +76,18 @@ const initialState: initialType = {
         id: 0,
         name: '',
         status: '',
-        image: '',
-        type:'',
         species:'',
+        type:'',
         gender:'',
         origin:{
             name:'',
             url:''
         },
+        location:{
+            name:'',
+            url:''
+        },
+        image:'',
         episode:[]
     },
     errorBusqueda:''

@@ -9,10 +9,18 @@ const Filtros = () => {
         dispatch(actionBusqueda(e.target.value))
         dispatch(getPersonajes(e.target.value))
     }
-    return <div className="filtros">
+    return (
+      <div className="filtros">
         <label htmlFor="nombre">Filtrar por nombre:</label>
-        <input type="text" placeholder="Rick, Morty, Beth, Alien, ...etc" name="nombre" onChange={(e)=>search(e)}/>
-    </div>
+        <input
+          type="text"
+          placeholder="Rick, Morty, Beth, Alien, ...etc"
+          name="nombre"
+          value={value}
+          onChange={(e) => search(e)}
+        />
+      </div>
+    );
 }
 
 export default Filtros;
