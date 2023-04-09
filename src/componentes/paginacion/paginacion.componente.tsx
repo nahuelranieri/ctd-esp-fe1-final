@@ -13,15 +13,15 @@ const Paginacion = () => {
     const dispatch = useAppDispatch();
     const storePag = useAppSelector(state => state.personaje.paginacion)
     const antPag = ()=>{
-        dispatch(getPaginacion(storePag.anterior))
+        dispatch(getPaginacion(storePag.prev))
     }
     const sigPag = ()=>{
-        dispatch(getPaginacion(storePag.siguiente))
+        dispatch(getPaginacion(storePag.next))
     }
     
     return <div className="paginacion">
-        <button disabled={!storePag.anterior} className={"primary"} onClick={()=> antPag()}>Anterior</button>
-        <button disabled={!storePag.siguiente} className={"primary"} onClick={()=> sigPag()}>Siguiente</button>
+        <button disabled={!storePag.prev} className={"primary"} onClick={()=> antPag()}>Anterior</button>
+        <button disabled={!storePag.next} className={"primary"} onClick={()=> sigPag()}>Siguiente</button>
     </div>
 }
 
