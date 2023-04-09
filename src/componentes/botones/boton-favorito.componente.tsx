@@ -28,7 +28,7 @@ const BotonFavorito = ({isFavBtn, onClick}:Props) => {
 }
 
 export default BotonFavorito;   
-BotonFavorito.propTypes ={
+/* BotonFavorito.propTypes ={
     isFavBtn: PropTypes.bool.isRequired,
     onClick: PropTypes.shape({
         id: PropTypes.number,
@@ -42,4 +42,4 @@ BotonFavorito.propTypes ={
         image:PropTypes.string,
         episode:PropTypes.arrayOf(PropTypes.string)
     }),
-}
+} */

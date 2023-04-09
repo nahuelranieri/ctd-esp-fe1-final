@@ -1,10 +1,10 @@
 import { Personaje } from "../types/personaje.types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-const api_baseUrl = 'https://rickandmortyapi.com/api/'
+const api = 'https://rickandmortyapi.com/api/'
 
 const apiPersonajes = async (filter:string) => {
-    const response = await fetch(`${api_baseUrl}character/${filter? '?name='+ filter : ''}`);
+    const response = await fetch(`${api}character/${filter? '?name='+ filter : ''}`);
     if(response.ok){
         const data = await response.json();
         return data
@@ -18,7 +18,7 @@ const apiPaginacion = async (url:string) => {
     return data
 }
 const apiOnePersonaje = async (id:string) => {
-    const response = await fetch(`${api_baseUrl}character/${id}`);
+    const response = await fetch(`${api}character/${id}`);
     if(response.ok){
         const data = await response.json();
         return data

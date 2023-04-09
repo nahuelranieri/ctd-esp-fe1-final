@@ -1,5 +1,5 @@
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 /*import { deleteAllfavoritos } from "../redux/slice";*/
 /**
  * Esta es la pagina de favoritos. Aquí se deberan ver todos los personajes marcados como favoritos
