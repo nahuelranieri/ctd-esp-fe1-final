@@ -22,7 +22,6 @@ const Encabezado = () => {
                         <li><Link to="/">Inicio</Link></li>
                         <li><Link to="/favoritos">Favoritos</Link></li>
                         <li><Link to="/detalle">Detalle</Link></li>
-                        {/* <li><Link to={`/detalle/${personaje.id}`}>Detalle</Link></li> */}
                     </ul>
                 </nav>
             </div>

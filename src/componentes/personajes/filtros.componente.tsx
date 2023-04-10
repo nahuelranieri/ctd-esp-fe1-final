@@ -1,13 +1,13 @@
 import './filtros.css';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { actionBusqueda, getPersonajes } from '../../redux/slice';
+import { actionBusqueda, getPersonajesAll } from '../../redux/slice';
 
 const Filtros = () => {
     const dispatch = useAppDispatch()
     const value = useAppSelector(state => state.personaje.busqueda)
     const search = (e:React.ChangeEvent<HTMLInputElement>)=>{
         dispatch(actionBusqueda(e.target.value))
-        dispatch(getPersonajes(e.target.value))
+        dispatch(getPersonajesAll(e.target.value))
     }
     return (
       <div className="filtros">

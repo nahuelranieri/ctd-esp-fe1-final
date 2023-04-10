@@ -1,37 +1,30 @@
-import { Personaje } from "../types/personaje.types";
+import Personaje from "../types/personaje.types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const api = 'https://rickandmortyapi.com/api/'
 
-const apiPersonajes = async (filter:string) => {
+const apiPersonajesAll = async (filter:string) => {
     const response = await fetch(`${api}character/${filter? '?name='+ filter : ''}`);
-    if(response.ok){
-        const data = await response.json();
-        return data
-    }else{
-        throw new Error("No hay personajes con el nombre que buscas, intenta otra cosa.");
-    }
+    const data = await response.json();
+    return data
 }
+
+const apiPersonaje = async (id:string) => {
+    const response = await fetch(`${api}character/${id}`);
+    const data = await response.json();
+    return data
+}
+
 const apiPaginacion = async (url:string) => {
     const response = await fetch(url);
     const data = await response.json();
     return data
 }
-const apiOnePersonaje = async (id:string) => {
-    const response = await fetch(`${api}character/${id}`);
-    if(response.ok){
-        const data = await response.json();
-        return data
-    }else{
-        throw new Error("No se encontro ese Personaje");
-    }
-}
 
-
-export const getPersonajes = createAsyncThunk(
-    '/getPersonajes',
+export const getPersonajesAll = createAsyncThunk(
+    '/getPersonajesAll',
     async (name: string) => {
-        const response = await apiPersonajes(name)
+        const response = await apiPersonajesAll(name)
         return response
     }
 )
@@ -43,10 +36,11 @@ export const getPaginacion = createAsyncThunk(
         return response
     }
 )
-export const getOnePersonaje = createAsyncThunk(
-    '/getOnePersonaje',
+
+export const getPersonaje = createAsyncThunk(
+    '/getPersonaje',
     async (id: string) => {
-        const response = await apiOnePersonaje(id)
+        const response = await apiPersonaje(id)
         return response
     }
 )
@@ -59,8 +53,7 @@ interface initialType {
         prev:string
     },
     favoritos: Personaje[],
-    selected: Personaje,
-    errorBusqueda: string | undefined
+    selected: Personaje
 
 }
 
@@ -75,22 +68,8 @@ const initialState: initialType = {
     selected:{
         id: 0,
         name: '',
-        status: '',
-        species:'',
-        type:'',
-        gender:'',
-        origin:{
-            name:'',
-            url:''
-        },
-        location:{
-            name:'',
-            url:''
-        },
-        image:'',
-        episode:[]
-    },
-    errorBusqueda:''
+        image:''
+    }
 
 }
 
@@ -101,14 +80,14 @@ export const personajesSlice = createSlice({
         actionBusqueda: (state, action) => {
             state.busqueda = action.payload
         },
-        favoritos: (state, action) => {
+        favs: (state, action) => {
             if(!state.favoritos.find(item => item.id === action.payload.id)){
                 state.favoritos.push(action.payload)
             }else{
                 state.favoritos = state.favoritos.filter(item => item.id !== action.payload.id)
             }
         },
-        deleteAllfavoritos: (state) => {
+        borrarFavs: (state) => {
             state.favoritos = initialState.favoritos
         },
         actionSelected: (state, action) => {
@@ -116,32 +95,24 @@ export const personajesSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getPersonajes.fulfilled, (state, action) => {
+        builder.addCase(getPersonajesAll.fulfilled, (state, action) => {
             state.personajes = action.payload.results
             state.paginacion.next = action.payload.info.next
             state.paginacion.prev = action.payload.info.prev
-            state.errorBusqueda = initialState.errorBusqueda
-        })
-        builder.addCase(getPersonajes.rejected, (state, action) => {
-            state.errorBusqueda = action.error.message
         })
         builder.addCase(getPaginacion.fulfilled, (state, action) => {
             state.personajes = action.payload.results
             state.paginacion.next = action.payload.info.next
             state.paginacion.prev = action.payload.info.prev
         })
-        builder.addCase(getOnePersonaje.fulfilled, (state, action) => {
+        builder.addCase(getPersonaje.fulfilled, (state, action) => {
             state.selected = action.payload
-            state.errorBusqueda = initialState.errorBusqueda
-        })
-        builder.addCase(getOnePersonaje.rejected, (state, action) => {
-            state.errorBusqueda = action.error.message
         })
     },
 
 })
 
-export const { actionBusqueda,favoritos, deleteAllfavoritos, actionSelected } = personajesSlice.actions
+export const { actionBusqueda,favs, borrarFavs, actionSelected } = personajesSlice.actions
 
 
 export default personajesSlice.reducer
