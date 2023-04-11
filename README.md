@@ -1,7 +1,6 @@
 # ctd-esp-fe1-final
 Examen Final de Frontend IV de Nahuel Ranieri
-El examen tiene las dos funcionalidades obligatorias (pagina de inicio con filtros y listado de personajes; y pagina de favoritos)
-+ la funcionalidad del boton de limpiar favoritos en la dicha pagina. La pagina detalle no se desarrollo.
++ El examen tiene las dos funcionalidades obligatorias (pagina de inicio con filtros y listado de personajes; y pagina de favoritos) y la funcionalidad extra del boton de limpiar favoritos en la dicha pagina. La pagina detalle no se desarrollo.
 
 ## Indice
 * [Requisitos](#requisitos)
