@@ -10,22 +10,29 @@ import { useAppSelector } from "../../redux/hooks";
  * @returns {JSX.Element}
  */
 const Encabezado = () => {
-
-    const personaje = useAppSelector(state => state.personaje.selected)
-    return <header>
+    const personaje = useAppSelector((state) => state.personaje.selected);
+    return (
+        <header>
             <div>
                 <div>
                     <h2>Examen Final de Frontend IV</h2>
                 </div>
                 <nav>
                     <ul>
-                        <li><Link to="/">Inicio</Link></li>
-                        <li><Link to="/favoritos">Favoritos</Link></li>
-                        <li><Link to="/detalle">Detalle</Link></li>
+                        <li>
+                            <Link to="/">Inicio</Link>
+                        </li>
+                        <li>
+                            <Link to="/favoritos">Favoritos</Link>
+                        </li>
+                        <li>
+                            <Link to="/detalle">Detalle</Link>
+                        </li>
                     </ul>
                 </nav>
             </div>
-    </header>
-}
+        </header>
+    );
+};
 
 export default Encabezado

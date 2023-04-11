@@ -9,19 +9,22 @@ import Personaje from '../../types/personaje.types';
  * 
  * @returns un JSX element 
  */
-interface Props{
-    personajes:Personaje[];
+interface Props {
+    personajes: Personaje[];
 }
 
-const GrillaPersonajes = ({personajes}:Props) => {
-
-    return <div className="grilla-personajes">
-       {
-            personajes && personajes.map((personaje) => (
-                <TarjetaPersonaje personaje={personaje} key={personaje.id.toString()}/>
-            ))
-        }
-    </div>
-}
+const GrillaPersonajes = ({ personajes }: Props) => {
+    return (
+        <div className="grilla-personajes">
+            {personajes &&
+                personajes.map((personaje) => (
+                    <TarjetaPersonaje
+                        personaje={personaje}
+                        key={personaje.id.toString()}
+                    />
+                ))}
+        </div>
+    );
+};
  
 export default GrillaPersonajes;

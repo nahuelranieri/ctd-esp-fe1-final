@@ -13,30 +13,32 @@ import { useEffect } from "react";
  * @returns la pagina de inicio
  */
 const PaginaInicio = () => {
-    const dispatch = useAppDispatch()
-    const personajes = useAppSelector(state => state.personaje.personajes)
+    const dispatch = useAppDispatch();
+    const personajes = useAppSelector((state) => state.personaje.personajes);
 
     useEffect(() => {
-        dispatch(getPersonajesAll(""))
-    }, [dispatch])
+        dispatch(getPersonajesAll(""));
+    }, [dispatch]);
 
-    const deleteFilter =()=>{
-        dispatch(actionBusqueda(''))
-        dispatch(getPersonajesAll(''))
-    }
+    const deleteFilter = () => {
+        dispatch(actionBusqueda(""));
+        dispatch(getPersonajesAll(""));
+    };
 
-
-
-    return <div className="container">
-        <div className="actions">
-            <h3>Catálogo de Personajes</h3>
-            <button className="danger" onClick={()=> deleteFilter()}>Limpiar Filtros</button>
+    return (
+        <div className="container">
+            <div className="actions">
+                <h3>Catálogo de Personajes</h3>
+                <button className="danger" onClick={() => deleteFilter()}>
+                    Limpiar Filtros
+                </button>
+            </div>
+            <Filtros />
+            <Paginacion />
+            <GrillaPersonajes personajes={personajes} />
+            <Paginacion />
         </div>
-        <Filtros />
-        <Paginacion />
-        <GrillaPersonajes personajes={personajes}/>
-        <Paginacion />
-    </div>
-}
+    );
+};
 
 export default PaginaInicio
